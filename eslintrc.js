@@ -4,8 +4,12 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "prettier/@typescript-eslint",
+    "plugin:jsx-a11y/recommended"
+    "plugin:react/recommended", 
   ],
-  plugins: ["@typescript-eslint", "prettier"],
+  plugins: [
+    "react-hooks"
+  ],
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
@@ -15,23 +19,34 @@ module.exports = {
     node: true,
   },
   rules: {
-    quotes: "off",
-    "@typescript-eslint/quotes": [
-      2,
-      "backtick",
-      {
-        avoidEscape: true,
-      },
-    ],
-    indent: ["error", 2, { SwitchCase: 1 }],
-    "prettier/prettier": [
-      "error",
-      {
-        trailingComma: "es5",
-        semi: false,
-        singleQuote: false,
-        printWidth: 120,
-      },
-    ],
+    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+    "jsx-a11y/no-redundant-roles": "off",
+    "react-hooks/exhaustive-deps": "warn',
+    "react-hooks/rules-of-hooks": "error",
+    "react/prop-types": "off",
   },
+  overrides: [
+    {
+      files: ["*.js"],
+      rules: {
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-member-accessibility": "off",
+      },
+    },
+    {
+      files: ['*.tsx', '*.ts'],
+      rules: {
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["error"],
+      },
+    },
+  ],
+settings: {
+        react: {
+            version: 'detect', 
+        },
+        linkComponents: [
+            { name: 'Link', linkAttribute: 'to' },
+        ],
+    },
 };
